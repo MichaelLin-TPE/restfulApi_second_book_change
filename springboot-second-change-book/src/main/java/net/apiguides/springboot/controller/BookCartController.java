@@ -37,7 +37,7 @@ public class BookCartController {
 		for(BookCartData data : allBookCartList) {
 			System.out.println(" dataBase uid : "+data.getUid());
 			
-			if(data.getUid().equals(userData.getUid())) {
+			if(data.getMyUid().equals(userData.getUid())) {
 				userBookCartList.add(data);
 			}
 		}
