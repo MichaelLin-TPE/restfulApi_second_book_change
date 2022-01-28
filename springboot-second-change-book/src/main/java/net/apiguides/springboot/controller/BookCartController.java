@@ -102,12 +102,12 @@ public class BookCartController {
 	
 	//delete BookData by id
 	@PostMapping("/deleteCart")
-	public ResponseEntity<BookCartData> deleteBookCartData(@RequestBody BookCartData bookCartData){
+	public String deleteBookCartData(@RequestBody BookCartData bookCartData){
 		
 		BookCartData oldBookData = this.bookCartRepository.findById(bookCartData.getId())
 				.orElseThrow(() -> new ResourceNotFoundException("BookData not found ID"));
 		this.bookCartRepository.delete(oldBookData);
-		return ResponseEntity.ok().build();
+		return bookCartData.getBookName() + " Delete Success";
 	}
 
 	
