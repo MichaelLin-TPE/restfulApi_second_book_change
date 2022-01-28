@@ -8,7 +8,7 @@ import net.apiguides.springboot.entity.BookData;
 import net.apiguides.springboot.entity.User;
 
 @Repository
-public interface BookRepository extends JpaRepository<BookData,Long>{
+public interface BookCartRepository extends JpaRepository<BookCartData,Long>{
 
 	
 	
