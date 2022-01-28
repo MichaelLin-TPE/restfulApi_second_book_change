@@ -46,6 +46,10 @@ public class BookController {
 			
 			if (data.getBookName().contains(searchData.getName()) ) {
 				searchList.add(data);
+				continue;
+			}			
+			if (data.getClassify().contains(searchData.getName())) {
+				searchList.add(data);
 			}
 			
 		}

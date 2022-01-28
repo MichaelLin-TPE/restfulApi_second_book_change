@@ -47,24 +47,7 @@ public class BookCartController {
 		
 	}
 	
-	//get BookData by id
-//	@PostMapping("/searchBookByBookName")
-//	public List<BookCartData> getBookDataByBookName(@RequestBody SearchData searchData) {
-//		
-//		List<BookCartData> allList = this.bookCartRepository.findAll();
-//		
-//		ArrayList<BookCartData> searchList = new ArrayList<>();
-//		
-//		for(BookCartData data : allList) {
-//			
-//			if (data.getBookName().contains(searchData.getName()) ) {
-//				searchList.add(data);
-//			}
-//			
-//		}
-//		
-//		return searchList;
-//	}
+
 	
 	
 	
@@ -86,19 +69,7 @@ public class BookCartController {
 		return this.bookCartRepository.save(oldBookData);
 		
 	}
-	
-	
-//	//update BookData
-//	@PutMapping("/{id}")
-//	public BookCartData updateBookCartData(@RequestBody BookCartData bokCartData , @PathVariable(value = "id")long bookDataId) {
-//		
-//		BookCartData oldBookData = this.bookCartRepository.findById(bookDataId)
-//				.orElseThrow(() -> new ResourceNotFoundException("BookData not found ID"));
-//		oldBookData.setBookName(bokCartData.getBookName());
-//		
-//		return this.bookCartRepository.save(oldBookData);
-//	}
-//	
+
 	
 	//delete BookData by id
 	@PostMapping("/deleteCart")
