@@ -42,8 +42,33 @@ public class BookCartController {
 			}
 		}
 		
+	    ArrayList<BookCartData> finalList = new ArrayList<>();
+	    
+	    for(BookCartData data : userBookCartList) {
+	    	
+	    	if (finalList.isEmpty()) {
+				finalList.add(data);
+	    		continue;
+			}
+	    	
+	    	boolean isFoundSameData = false;
+	    	for(BookCartData oldData : finalList) {
+	    		
+	    		if (oldData.getBookName().equals(data.getBookName())) {
+	    			isFoundSameData = true;
+	    			oldData.setQty((Integer.parseInt(data.getQty()) + Integer.parseInt(oldData.getQty()))+"");
+	    			continue;
+				}
+	    		
+	    	}
+	    	if (!isFoundSameData) {
+				finalList.add(data);
+			}
+	    	
+	    }
 		
-		return userBookCartList;
+		
+		return finalList;
 		
 	}
 	
