@@ -52,7 +52,7 @@ public class BookCartData {
 	
 
 	public BookCartData(String bookName, String classify, String description, String qty, String status, String shipment,
-			String remark, String unitPrice, String totalPrice, String uid, long time, String photoUrl,
+			String remark, String unitPrice, String totalPrice, String uploaderUid, long time, String photoUrl,
 			String userEmail,String myUid) {
 		super();
 		this.bookName = bookName;
@@ -64,7 +64,7 @@ public class BookCartData {
 		this.remark = remark;
 		this.unitPrice = unitPrice;
 		this.totalPrice = totalPrice;
-		this.uploaderUid = uid;
+		this.uploaderUid = uploaderUid;
 		this.time = time;
 		this.photoUrl = photoUrl;
 		this.userEmail = userEmail;
@@ -72,6 +72,18 @@ public class BookCartData {
 	}
 
 	
+
+
+	public String getUploaderUid() {
+		return uploaderUid;
+	}
+
+
+
+	public void setUploaderUid(String uploaderUid) {
+		this.uploaderUid = uploaderUid;
+	}
+
 
 
 	public String getMyUid() {
@@ -179,19 +191,6 @@ public class BookCartData {
 	public void setTotalPrice(String totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-
-
-
-	public String getUid() {
-		return uploaderUid;
-	}
-
-
-
-	public void setUid(String uid) {
-		this.uploaderUid = uid;
-	}
-
 
 
 	public long getTime() {

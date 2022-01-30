@@ -89,7 +89,7 @@ public class UserBasicDataController {
 		ArrayList<BookData> bookList = new ArrayList<>();
 		
 		for(BookData bookData : bookRepository.findAll()) {
-			if (bookData.getUid().equals(userBasicData.getUserUid())) {
+			if (bookData.getUploaderUid().equals(userBasicData.getUserUid())) {
 				bookList.add(bookData);
 			}
 		}

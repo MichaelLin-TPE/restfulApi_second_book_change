@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "books")
+@Table(name = "new_books")
 public class BookData {
 
 	@Id
@@ -44,6 +44,7 @@ public class BookData {
     private String userEmail;
 	@Column(name = "my_uid")
 	private String myUid;
+	
 	public BookData() {
 		
 	}
@@ -51,7 +52,7 @@ public class BookData {
 	
 
 	public BookData(String bookName, String classify, String description, String qty, String status, String shipment,
-			String remark, String unitPrice, String totalPrice, String uid, long time, String photoUrl,
+			String remark, String unitPrice, String totalPrice, String uploaderUid, long time, String photoUrl,
 			String userEmail,String myUid) {
 		super();
 		this.bookName = bookName;
@@ -63,7 +64,7 @@ public class BookData {
 		this.remark = remark;
 		this.unitPrice = unitPrice;
 		this.totalPrice = totalPrice;
-		this.uploaderUid = uid;
+		this.uploaderUid = uploaderUid;
 		this.time = time;
 		this.photoUrl = photoUrl;
 		this.userEmail = userEmail;
@@ -193,19 +194,6 @@ public class BookData {
 	}
 
 
-
-	public String getUid() {
-		return uploaderUid;
-	}
-
-
-
-	public void setUid(String uid) {
-		this.uploaderUid = uid;
-	}
-
-
-
 	public long getTime() {
 		return time;
 	}
@@ -256,6 +244,16 @@ public class BookData {
 
 	public void setBookName(String bookName) {
 		this.bookName = bookName;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "BookData [id=" + id + ", bookName=" + bookName + ", classify=" + classify + ", description="
+				+ description + ", qty=" + qty + ", status=" + status + ", shipment=" + shipment + ", remark=" + remark
+				+ ", unitPrice=" + unitPrice + ", totalPrice=" + totalPrice + ", uploaderUid=" + uploaderUid + ", time="
+				+ time + ", photoUrl=" + photoUrl + ", userEmail=" + userEmail + ", myUid=" + myUid + "]";
 	}
 	
 	

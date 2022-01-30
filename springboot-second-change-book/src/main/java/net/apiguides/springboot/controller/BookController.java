@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.aspectj.weaver.NewConstructorTypeMunger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import com.google.gson.Gson;
+
 import org.springframework.http.*;
 import org.springframework.http.StreamingHttpOutputMessage.Body;
 
@@ -29,8 +34,11 @@ public class BookController {
 	public List<BookData> getAllBookDatas(){
 		
 		//get all BookDatas
+		List<BookData> allList = bookRepository.findAll();
 		
-		return bookRepository.findAll();
+		System.out.println(new Gson().toJson(allList));
+		
+		return allList;
 		
 	}
 	
@@ -59,8 +67,11 @@ public class BookController {
 	
 	//create BookData
 	@PostMapping("/addBook")
-	public BookData addBookData(@RequestBody BookData BookData) {
-		return this.bookRepository.save(BookData);
+	public BookData addBookData(@RequestBody BookData bookData) {
+		
+		System.out.println("book Data "+new Gson().toJson(bookData));
+		
+		return this.bookRepository.save(bookData);
 	}
 	
 	
