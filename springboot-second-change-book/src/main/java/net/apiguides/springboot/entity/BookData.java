@@ -34,15 +34,16 @@ public class BookData {
     private String unitPrice;
 	@Column(name = "totalPrice")
     private String totalPrice;
-	@Column(name = "uid")
-    private String uid;
+	@Column(name = "uploaderUid")
+    private String uploaderUid;
 	@Column(name = "time")
     private long time;
 	@Column(name = "photoUrl")
     private String photoUrl;
 	@Column(name = "userEmail")
     private String userEmail;
-	
+	@Column(name = "myUid")
+	private String myUid;
 	public BookData() {
 		
 	}
@@ -51,7 +52,7 @@ public class BookData {
 
 	public BookData(String bookName, String classify, String description, String qty, String status, String shipment,
 			String remark, String unitPrice, String totalPrice, String uid, long time, String photoUrl,
-			String userEmail) {
+			String userEmail,String myUid) {
 		super();
 		this.bookName = bookName;
 		this.classify = classify;
@@ -62,10 +63,37 @@ public class BookData {
 		this.remark = remark;
 		this.unitPrice = unitPrice;
 		this.totalPrice = totalPrice;
-		this.uid = uid;
+		this.uploaderUid = uid;
 		this.time = time;
 		this.photoUrl = photoUrl;
 		this.userEmail = userEmail;
+		this.myUid = myUid;
+	}
+
+	
+	
+
+
+	public String getUploaderUid() {
+		return uploaderUid;
+	}
+
+
+
+	public void setUploaderUid(String uploaderUid) {
+		this.uploaderUid = uploaderUid;
+	}
+
+
+
+	public String getMyUid() {
+		return myUid;
+	}
+
+
+
+	public void setMyUid(String myUid) {
+		this.myUid = myUid;
 	}
 
 
@@ -167,13 +195,13 @@ public class BookData {
 
 
 	public String getUid() {
-		return uid;
+		return uploaderUid;
 	}
 
 
 
 	public void setUid(String uid) {
-		this.uid = uid;
+		this.uploaderUid = uid;
 	}
 
 
