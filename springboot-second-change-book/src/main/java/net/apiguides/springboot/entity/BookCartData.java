@@ -30,19 +30,19 @@ public class BookCartData {
     private String shipment;
 	@Column(name = "remark")
     private String remark;
-	@Column(name = "unitPrice")
+	@Column(name = "unit_price")
     private String unitPrice;
-	@Column(name = "totalPrice")
+	@Column(name = "total_price")
     private String totalPrice;
-	@Column(name = "uploaderUid")
+	@Column(name = "uploader_uid")
     private String uploaderUid;
 	@Column(name = "time")
     private long time;
-	@Column(name = "photoUrl")
+	@Column(name = "photo_url")
     private String photoUrl;
-	@Column(name = "userEmail")
+	@Column(name = "user_email")
     private String userEmail;
-	@Column(name = "myUid")
+	@Column(name = "my_uid")
 	private String myUid;
 	
 	public BookCartData() {
