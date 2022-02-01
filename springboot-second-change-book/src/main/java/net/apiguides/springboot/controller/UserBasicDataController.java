@@ -100,5 +100,16 @@ public class UserBasicDataController {
 		
 	}
 	
+	@PostMapping("/deleteUser")
+	public UserBasicData deleteUserBasicData(UserBasicData data) {
+		
+		UserBasicData basicData = this.userBasicDataRepository.findById(data.getId())
+				.orElseThrow(() -> new ResourceNotFoundException("BookData not found ID"));
+		
+		this.userBasicDataRepository.delete(basicData);
+		return data;
+	}
+	
+	
 	
 }
