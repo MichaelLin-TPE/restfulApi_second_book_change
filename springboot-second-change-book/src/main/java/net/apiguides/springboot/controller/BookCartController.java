@@ -34,6 +34,8 @@ public class BookCartController {
 		
 		List<BookCartData> userBookCartList = new ArrayList<BookCartData>();
 		
+		
+		
 		for(BookCartData data : allBookCartList) {
 			System.out.println(" dataBase uid : "+data.getUploaderUid());
 			
@@ -41,6 +43,8 @@ public class BookCartController {
 				userBookCartList.add(data);
 			}
 		}
+		
+
 		
 		return userBookCartList;
 		
@@ -57,16 +61,19 @@ public class BookCartController {
 		List<BookCartData> list = bookCartRepository.findAll();
 		
 		boolean isFoundData = false;
+		BookCartData newData = null;
 		for(BookCartData data : list) {
 			if (data.getBookName().equals(bookCartData.getBookName()) && data.getMyUid().equals(bookCartData.getMyUid())) {
 				int qty = Integer.parseInt(data.getQty()) + Integer.parseInt(bookCartData.getQty());
-				data.setQty(qty+"");
+				newData = data;
+				newData.setQty(qty+"");
 				isFoundData = true;
 				break;
 			}
 		}
 		
 		if (isFoundData) {
+			this.bookCartRepository.save(newData);
 			return bookCartData;
 		}
 		
