@@ -30,13 +30,16 @@ public class UserBasicDataController {
 	
 	
 	@PostMapping("/checkBasicData")
-	public UserBasicData checkUserBasicExit(UserBasicData userBasicData) {
+	public UserBasicData checkUserBasicExit(@RequestBody UserBasicData userBasicData) {
 		
 		List<UserBasicData> allUserList = userBasicDataRepository.findAll();
 		
 		boolean isFoundSameUser = false;
 		
 		for(UserBasicData data : allUserList) {
+			if (data.getUserUid() == null) {
+				continue;
+			}
 			if (data.getUserUid().equals(userBasicData.getUserUid())) {
 				isFoundSameUser = true;
 				break;
@@ -46,15 +49,12 @@ public class UserBasicDataController {
 			return userBasicData;
 		}
 		
-		this.userBasicDataRepository.save(userBasicData);
-		
-		
-		return userBasicData;
+		return this.userBasicDataRepository.save(userBasicData);
 	}
 	
 	
 	@PostMapping("/editUserData")
-	public UserBasicData editBasicData(UserBasicData userBasicData) {
+	public UserBasicData editBasicData(@RequestBody UserBasicData userBasicData) {
 		
 		UserBasicData olBasicData = this.userBasicDataRepository.findById(userBasicData.getId())
 				.orElseThrow(() -> new ResourceNotFoundException("BookData not found ID"));
@@ -101,7 +101,7 @@ public class UserBasicDataController {
 	}
 	
 	@PostMapping("/deleteUser")
-	public UserBasicData deleteUserBasicData(UserBasicData data) {
+	public UserBasicData deleteUserBasicData(@RequestBody UserBasicData data) {
 		
 		UserBasicData basicData = this.userBasicDataRepository.findById(data.getId())
 				.orElseThrow(() -> new ResourceNotFoundException("BookData not found ID"));
