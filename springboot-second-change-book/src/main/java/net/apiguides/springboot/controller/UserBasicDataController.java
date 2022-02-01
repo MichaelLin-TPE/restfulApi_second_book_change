@@ -64,7 +64,7 @@ public class UserBasicDataController {
 	}
 	
 	@PostMapping("/searchUserAllInformation")
-	public UserAllInformation searchUserAllInformation(UserBasicData userBasicData) {
+	public UserAllInformation searchUserAllInformation(@RequestBody UserBasicData userBasicData) {
 		
 		
 		UserAllInformation information = new UserAllInformation();
