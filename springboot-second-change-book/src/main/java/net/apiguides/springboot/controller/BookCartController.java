@@ -64,7 +64,7 @@ public class BookCartController {
 		BookCartData newData = null;
 		for(BookCartData data : list) {
 			if (data.getBookName().equals(bookCartData.getBookName()) && data.getMyUid().equals(bookCartData.getMyUid())) {
-				int qty = Integer.parseInt(data.getQty()) + Integer.parseInt(bookCartData.getQty());
+				int qty = Integer.parseInt(data.getQty().trim()) + Integer.parseInt(bookCartData.getQty().trim());
 				newData = data;
 				newData.setQty(qty+"");
 				isFoundData = true;
