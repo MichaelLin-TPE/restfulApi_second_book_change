@@ -73,8 +73,8 @@ public class BookCartController {
 		}
 		
 		if (isFoundData) {
-			this.bookCartRepository.save(newData);
-			return bookCartData;
+			
+			return this.bookCartRepository.save(newData);
 		}
 		
 		return bookCartRepository.save(bookCartData);
