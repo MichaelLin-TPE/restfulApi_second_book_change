@@ -73,15 +73,16 @@ public class UserBasicDataController {
 		for(UserBasicData data : userBasicDataRepository.findAll()) {
 			
 			if (data.getUserUid().equals(userBasicData.getUserUid())) {
-				information.setAccount(data.getAccount());
+				
+				information.setAccount(data.getAccount() == null ? "" : data.getAccount());
 				information.setBookCount(data.getBookCount());
-				information.setEmail(data.getEmail());
+				information.setEmail(data.getEmail() == null ? "" : data.getEmail());
 				information.setFollow(data.getFollow());
 				information.setFollower(data.getFollower());
-				information.setNickName(data.getNickName());
-				information.setTel(data.getTel());
-				information.setUserPhotoUrl(data.getUserPhotoUrl());
-				information.setUserUid(data.getUserUid());
+				information.setNickName(data.getNickName() == null ? "" : data.getNickName());
+				information.setTel(data.getTel() == null ? "" : data.getTel());
+				information.setUserPhotoUrl(data.getUserPhotoUrl() == null ? "" : data.getUserPhotoUrl());
+				information.setUserUid(data.getUserUid() == null ? "" : data.getUserUid());
 				break;
 			}
 		}
