@@ -42,33 +42,7 @@ public class BookCartController {
 			}
 		}
 		
-	    ArrayList<BookCartData> finalList = new ArrayList<>();
-	    
-	    for(BookCartData data : userBookCartList) {
-	    	
-	    	if (finalList.isEmpty()) {
-				finalList.add(data);
-	    		continue;
-			}
-	    	
-	    	boolean isFoundSameData = false;
-	    	for(BookCartData oldData : finalList) {
-	    		
-	    		if (oldData.getBookName().equals(data.getBookName())) {
-	    			isFoundSameData = true;
-	    			oldData.setQty((Integer.parseInt(data.getQty()) + Integer.parseInt(oldData.getQty()))+"");
-	    			continue;
-				}
-	    		
-	    	}
-	    	if (!isFoundSameData) {
-				finalList.add(data);
-			}
-	    	
-	    }
-		
-		
-		return finalList;
+		return userBookCartList;
 		
 	}
 	
@@ -79,7 +53,24 @@ public class BookCartController {
 	//create BookCartData
 	@PostMapping("/addCart")
 	public BookCartData addBookCartData(@RequestBody BookCartData bookCartData) {
-		return this.bookCartRepository.save(bookCartData);
+		
+		List<BookCartData> list = bookCartRepository.findAll();
+		
+		boolean isFoundData = false;
+		for(BookCartData data : list) {
+			if (data.getBookName().equals(bookCartData.getBookName()) && data.getMyUid().equals(bookCartData.getMyUid())) {
+				int qty = Integer.parseInt(data.getQty()) + Integer.parseInt(bookCartData.getQty());
+				data.setQty(qty+"");
+				isFoundData = true;
+				break;
+			}
+		}
+		
+		if (isFoundData) {
+			return bookCartData;
+		}
+		
+		return bookCartRepository.save(bookCartData);
 	}
 	
 	
