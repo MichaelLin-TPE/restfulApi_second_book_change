@@ -40,6 +40,23 @@ public class FavoriteController {
 	@PostMapping("/addFavorite")
 	public FavoriteData addFavoriteData(@RequestBody FavoriteData favoriteData) {
 		
+		
+		boolean isFoundSameData = false;
+		
+		for(FavoriteData data : favoriteRepository.findAll()) {
+			
+			if (data.getBookName().equals(favoriteData.getBookName()) && data.getMyUid().equals(favoriteData.getMyUid())) {
+				isFoundSameData = true;
+			}
+		}
+		if (isFoundSameData) {
+			
+			favoriteData.setBookName("Do not repeat!");
+			return favoriteData;
+		}
+		
+		
+		
 		return favoriteRepository.save(favoriteData);
 		
 		

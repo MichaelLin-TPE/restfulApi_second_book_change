@@ -41,6 +41,7 @@ public class UserBasicDataController {
 				continue;
 			}
 			if (data.getUserUid().equals(userBasicData.getUserUid())) {
+				userBasicData.setId(data.getId());
 				isFoundSameUser = true;
 				break;
 			}
