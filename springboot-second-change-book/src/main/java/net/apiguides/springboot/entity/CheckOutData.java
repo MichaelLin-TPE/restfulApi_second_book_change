@@ -42,7 +42,7 @@ public class CheckOutData implements Serializable{
 	
 	
 	@Column(name = "sum")
-	private int sum;
+	private String sum;
 	
 	public CheckOutData() {
 		
@@ -50,7 +50,7 @@ public class CheckOutData implements Serializable{
 	
 	
 	public CheckOutData(String userEmail, String uploaderUid, String myUid, boolean isAllSelected,
-			String orderId,int shipmentFee,String shipmnetWay,int sum) {
+			String orderId,int shipmentFee,String shipmnetWay,String sum) {
 		super();
 		this.orderId = orderId;
 		this.userEmail = userEmail;
@@ -64,12 +64,12 @@ public class CheckOutData implements Serializable{
 
 	
 	
-	public int getSum() {
+	public String getSum() {
 		return sum;
 	}
 
 
-	public void setSum(int sum) {
+	public void setSum(String sum) {
 		this.sum = sum;
 	}
 

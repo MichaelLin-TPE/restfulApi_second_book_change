@@ -28,7 +28,7 @@ public class OrderSaveData {
 	
 	private int role;
 	
-	private int sum;
+	private String sum;
 	
 	private ArrayList<CheckOutSaveData> checkOutList;
 	
@@ -36,7 +36,7 @@ public class OrderSaveData {
 		
 	}
 
-	public OrderSaveData(int status,String myUid,String orderId,int role,ArrayList<CheckOutSaveData> checkOutList ,int sum) {
+	public OrderSaveData(int status,String myUid,String orderId,int role,ArrayList<CheckOutSaveData> checkOutList ,String sum) {
 		super();
 		this.orderId = orderId;
 		this.status = status;
@@ -50,11 +50,11 @@ public class OrderSaveData {
 	
 	
 
-	public int getSum() {
+	public String getSum() {
 		return sum;
 	}
 
-	public void setSum(int sum) {
+	public void setSum(String sum) {
 		this.sum = sum;
 	}
 
