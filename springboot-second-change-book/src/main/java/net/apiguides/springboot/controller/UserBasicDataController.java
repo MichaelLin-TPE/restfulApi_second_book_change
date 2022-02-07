@@ -16,6 +16,7 @@ import net.apiguides.springboot.entity.UserBasicData;
 import net.apiguides.springboot.exception.ResourceNotFoundException;
 import net.apiguides.springboot.repository.BookRepository;
 import net.apiguides.springboot.repository.UserBasicDataRepository;
+import net.apiguides.springboot.repository.UserRepository;
 
 @RestController
 @RequestMapping("/api/books")
@@ -80,6 +81,13 @@ public class UserBasicDataController {
 	
 	@PostMapping("/editUserData")
 	public UserBasicData editBasicData(@RequestBody UserBasicData userBasicData) {
+		
+		for(UserBasicData data : userBasicDataRepository.findAll()) {
+			
+			if (data.getUserUid().equals(userBasicData.getUserUid())) {
+				userBasicData.setId(data.getId());
+			}	
+		}
 		
 		UserBasicData olBasicData = this.userBasicDataRepository.findById(userBasicData.getId())
 				.orElseThrow(() -> new ResourceNotFoundException("BookData not found ID"));
