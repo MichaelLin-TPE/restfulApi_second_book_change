@@ -44,17 +44,26 @@ public class UserBasicData {
 	@Column(name = "bookCount")
     private int bookCount;
     
+	@Column(name = "bank_code")
+	private String bankCode;
+	
+	@Column(name = "bank_account")
+	private String bankAccount;
+	
+	@Column(name = "bane_name")
+	private String bankName;
 	
 	
 	
     public UserBasicData() {
     	
     }
-    
-	
+
+
+
 
 	public UserBasicData(String nickName, String account, String userUid, String tel, String email, String userPhotoUrl,
-			int follow, int follower, int bookCount) {
+			int follow, int follower, int bookCount, String bankCode, String bankAccount, String bankName) {
 		super();
 		this.nickName = nickName;
 		this.account = account;
@@ -65,6 +74,52 @@ public class UserBasicData {
 		this.follow = follow;
 		this.follower = follower;
 		this.bookCount = bookCount;
+		this.bankCode = bankCode;
+		this.bankAccount = bankAccount;
+		this.bankName = bankName;
+	}
+
+
+
+
+
+
+
+
+
+
+	public String getBankCode() {
+		return bankCode;
+	}
+
+
+
+	public void setBankCode(String bankCode) {
+		this.bankCode = bankCode;
+	}
+
+
+
+	public String getBankAccount() {
+		return bankAccount;
+	}
+
+
+
+	public void setBankAccount(String bankAccount) {
+		this.bankAccount = bankAccount;
+	}
+
+
+
+	public String getBankName() {
+		return bankName;
+	}
+
+
+
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
 	}
 
 
