@@ -28,6 +28,12 @@ public class UserAllInformation {
 	
     private int bookCount;
     
+	private String bankCode;
+
+	private String bankAccount;
+
+	private String bankName;
+    
     private ArrayList<BookData> bookList;
     
     
@@ -38,7 +44,8 @@ public class UserAllInformation {
 	}
 
 	public UserAllInformation(String nickName, String account, String userUid, String tel, String email,
-			String userPhotoUrl, int follow, int follower, int bookCount, ArrayList<BookData> bookList) {
+			String userPhotoUrl, int follow, int follower, int bookCount, ArrayList<BookData> bookList,
+			String bankCode,String bankAccount,String bankName) {
 		super();
 		this.nickName = nickName;
 		this.account = account;
@@ -50,6 +57,35 @@ public class UserAllInformation {
 		this.follower = follower;
 		this.bookCount = bookCount;
 		this.bookList = bookList;
+		this.bankCode = bankCode;
+		this.bankAccount = bankAccount;
+		this.bankName = bankName;
+	}
+
+	
+	
+	public String getBankCode() {
+		return bankCode;
+	}
+
+	public void setBankCode(String bankCode) {
+		this.bankCode = bankCode;
+	}
+
+	public String getBankAccount() {
+		return bankAccount;
+	}
+
+	public void setBankAccount(String bankAccount) {
+		this.bankAccount = bankAccount;
+	}
+
+	public String getBankName() {
+		return bankName;
+	}
+
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
 	}
 
 	public String getNickName() {

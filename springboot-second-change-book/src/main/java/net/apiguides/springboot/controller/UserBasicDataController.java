@@ -108,6 +108,10 @@ public class UserBasicDataController {
 				information.setTel(data.getTel() == null ? "" : data.getTel());
 				information.setUserPhotoUrl(data.getUserPhotoUrl() == null ? "" : data.getUserPhotoUrl());
 				information.setUserUid(data.getUserUid() == null ? "" : data.getUserUid());
+				information.setBankCode(data.getBankCode() == null ? "" : data.getBankCode());
+				information.setBankAccount(data.getBankAccount() == null ? "" : data.getBankAccount());
+				information.setBankName(data.getBankName() == null ? "" : data.getBankName());
+				
 				break;
 			}
 		}
