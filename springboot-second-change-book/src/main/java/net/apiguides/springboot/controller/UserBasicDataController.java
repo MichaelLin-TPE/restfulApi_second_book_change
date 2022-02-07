@@ -29,6 +29,30 @@ public class UserBasicDataController {
 	private BookRepository bookRepository;
 	
 	
+	
+	@PostMapping("/getAllSellerData")
+	public List<UserBasicData> getSellerData(@RequestBody List<UserBasicData> sellerList){
+		
+		List<UserBasicData> allUserList = userBasicDataRepository.findAll();
+		
+		List<UserBasicData> sellerAllList = new ArrayList<>();
+		
+		for(UserBasicData data : allUserList) {
+			
+			for(UserBasicData userBasicData : sellerList) {
+				
+				if (data.getUserUid().equals(userBasicData.getUserUid())) {
+					sellerAllList.add(data);
+				}
+				
+			}
+			
+		}
+		
+		return sellerAllList;
+	}
+	
+	
 	@PostMapping("/checkBasicData")
 	public UserBasicData checkUserBasicExit(@RequestBody UserBasicData userBasicData) {
 		
