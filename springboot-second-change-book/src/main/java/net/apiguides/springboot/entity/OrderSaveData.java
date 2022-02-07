@@ -28,24 +28,35 @@ public class OrderSaveData {
 	
 	private int role;
 	
+	private int sum;
+	
 	private ArrayList<CheckOutSaveData> checkOutList;
 	
 	public OrderSaveData() {
 		
 	}
 
-	public OrderSaveData(int status,String myUid,String orderId,int role,ArrayList<CheckOutSaveData> checkOutList ) {
+	public OrderSaveData(int status,String myUid,String orderId,int role,ArrayList<CheckOutSaveData> checkOutList ,int sum) {
 		super();
 		this.orderId = orderId;
 		this.status = status;
 		this.myUid = myUid;
 		this.checkOutList = checkOutList;
 		this.role = role;
+		this.sum = sum;
 
 	}
 	
 	
+	
 
+	public int getSum() {
+		return sum;
+	}
+
+	public void setSum(int sum) {
+		this.sum = sum;
+	}
 
 	public int getRole() {
 		return role;

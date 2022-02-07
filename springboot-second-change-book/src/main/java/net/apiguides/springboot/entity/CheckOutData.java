@@ -41,13 +41,16 @@ public class CheckOutData implements Serializable{
 	private String shipmentWay;
 	
 	
+	@Column(name = "sum")
+	private int sum;
+	
 	public CheckOutData() {
 		
 	}
 	
 	
 	public CheckOutData(String userEmail, String uploaderUid, String myUid, boolean isAllSelected,
-			String orderId,int shipmentFee,String shipmnetWay) {
+			String orderId,int shipmentFee,String shipmnetWay,int sum) {
 		super();
 		this.orderId = orderId;
 		this.userEmail = userEmail;
@@ -56,10 +59,21 @@ public class CheckOutData implements Serializable{
 		this.isAllSelected = isAllSelected;
 		this.shipmentFee = shipmentFee;
 		this.shipmentWay = shipmnetWay;
+		this.sum = sum;
 	}
 
 	
 	
+	public int getSum() {
+		return sum;
+	}
+
+
+	public void setSum(int sum) {
+		this.sum = sum;
+	}
+
+
 	public int getShipmentFee() {
 		return shipmentFee;
 	}
