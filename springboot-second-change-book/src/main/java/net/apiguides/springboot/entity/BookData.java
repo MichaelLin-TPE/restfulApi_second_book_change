@@ -44,7 +44,7 @@ public class BookData {
     private String userEmail;
 	@Column(name = "my_uid")
 	private String myUid;
-	@Column(name = "msgCount")
+	@Column(name = "msg_count")
 	private int msgCount;
 	
 	public BookData() {
