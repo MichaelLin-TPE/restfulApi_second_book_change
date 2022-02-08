@@ -88,6 +88,8 @@ public class BookCartController {
 			checkOutData.setOrderId(data.getOrderId());
 			checkOutData.setUploaderUid(data.getUploaderUid());
 			checkOutData.setUserEmail(data.getUserEmail());
+			checkOutData.setShipmentFee(data.getShipmentFee());
+			checkOutData.setShipmentWay(data.getShipmentWay());
 			
 			checkOutDataRepository.save(checkOutData);
 			
@@ -211,6 +213,8 @@ public class BookCartController {
 				saveData.setUploaderUid(checkOutData.getUploaderUid());
 				saveData.setUserEmail(checkOutData.getUserEmail());
 				saveData.setOrderId(checkOutData.getOrderId());
+				saveData.setShipmentFee(checkOutData.getShipmentFee());
+				saveData.setShipmentWay(checkOutData.getShipmentWay());
 				
 				checkOutDatas.add(saveData);
 				
@@ -253,7 +257,8 @@ public class BookCartController {
 				saveData.setUploaderUid(checkOutData.getUploaderUid());
 				saveData.setUserEmail(checkOutData.getUserEmail());
 				saveData.setOrderId(checkOutData.getOrderId());
-				
+				saveData.setShipmentFee(checkOutData.getShipmentFee());
+				saveData.setShipmentWay(checkOutData.getShipmentWay());
 				checkOutDatas.add(saveData);
 				
 				ArrayList<CheckOutProductList> productLists = new ArrayList<>();
