@@ -121,6 +121,14 @@ public class BookCartController {
 		
 		orderDataRepository.save(orderData);
 		
+		
+		for(BookCartData cartData : bookCartRepository.findAll()) {
+			if (cartData.getMyUid().equals(orderData.getMyUid())) {
+				bookCartRepository.delete(cartData);
+			}
+		}
+		
+		
 		return getJson(RESULT_OK,"Check out successful!");
 	}
 	
