@@ -44,6 +44,8 @@ public class BookData {
     private String userEmail;
 	@Column(name = "my_uid")
 	private String myUid;
+	@Column(name = "msgCount")
+	private int msgCount;
 	
 	public BookData() {
 		
@@ -53,7 +55,7 @@ public class BookData {
 
 	public BookData(String bookName, String classify, String description, String qty, String status, String shipment,
 			String remark, String unitPrice, String totalPrice, String uploaderUid, long time, String photoUrl,
-			String userEmail,String myUid) {
+			String userEmail,String myUid,int msgCount) {
 		super();
 		this.bookName = bookName;
 		this.classify = classify;
@@ -69,10 +71,24 @@ public class BookData {
 		this.photoUrl = photoUrl;
 		this.userEmail = userEmail;
 		this.myUid = myUid;
+		this.msgCount = msgCount;
 	}
 
 	
 	
+
+	
+
+	public int getMsgCount() {
+		return msgCount;
+	}
+
+
+
+	public void setMsgCount(int msgCount) {
+		this.msgCount = msgCount;
+	}
+
 
 
 	public String getUploaderUid() {

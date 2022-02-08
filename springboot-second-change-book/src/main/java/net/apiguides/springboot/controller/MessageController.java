@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import net.apiguides.springboot.entity.BookData;
 import net.apiguides.springboot.entity.MessageData;
 import net.apiguides.springboot.entity.ResponseData;
+import net.apiguides.springboot.repository.BookRepository;
 import net.apiguides.springboot.repository.MessageRepository;
 
 
@@ -15,6 +16,9 @@ import net.apiguides.springboot.repository.MessageRepository;
 @RequestMapping("/api/books")
 public class MessageController {
 
+	@Autowired
+	private BookRepository bookRepository;
+	
 	@Autowired
 	private MessageRepository messageRepository;
 	
@@ -48,6 +52,16 @@ public class MessageController {
 			
 			return getJson(404, "Data is missing some variable");
 		}
+		
+		for(BookData bookData : bookRepository.findAll()) {
+			
+			if (bookData.getUploaderUid().equals(messageData.getUploaderUid()) && bookData.getId() == messageData.getBookId()) {
+				bookData.setMsgCount(bookData.getMsgCount() + 1);
+				bookRepository.save(bookData);
+				break;
+			}
+		}
+		
 		
 		messageRepository.save(messageData);
 		
