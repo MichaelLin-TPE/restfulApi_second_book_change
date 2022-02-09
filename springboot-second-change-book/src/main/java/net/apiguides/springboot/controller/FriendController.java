@@ -59,6 +59,28 @@ public class FriendController {
 		
 	}
 	
+	@PostMapping("/isFriend")
+	public ResponseData isFrien(@RequestBody FollowData followData) {
+		if (followData.getMyUid() == null || followData.getTargetUid() == null) {
+			
+			return getJson(404, "Uid is null !!");
+		}
+		
+		boolean isFollowing = false;
+		
+		for(FriendData data : friendRepository.findAll()) {
+			
+			if (data.getMyUid().equals(followData.getMyUid()) && data.getFriendUid().equals(followData.getTargetUid())) {
+				isFollowing = true;
+			}
+		}
+		
+		
+		return getJson(200, isFollowing ? "Is friend" : "Is not friend");
+		
+	}
+	
+	
 	@PostMapping("/getFollowers")
 	public ArrayList<FriendList> getFollowers(@RequestBody UserData userData){
 		
