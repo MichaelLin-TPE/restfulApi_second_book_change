@@ -14,10 +14,14 @@ import com.google.gson.Gson;
 import org.springframework.http.*;
 import org.springframework.http.StreamingHttpOutputMessage.Body;
 
+import net.apiguides.springboot.entity.BookCartData;
 import net.apiguides.springboot.entity.BookData;
+import net.apiguides.springboot.entity.FavoriteData;
 import net.apiguides.springboot.entity.SearchData;
 import net.apiguides.springboot.exception.ResourceNotFoundException;
+import net.apiguides.springboot.repository.BookCartRepository;
 import net.apiguides.springboot.repository.BookRepository;
+import net.apiguides.springboot.repository.FavoriteRepository;
 
 
 
@@ -28,6 +32,13 @@ public class BookController {
 	
 	@Autowired
 	private BookRepository bookRepository;
+	
+	@Autowired 
+	private BookCartRepository cartRepository;
+	
+	@Autowired
+	private FavoriteRepository favoriteRepository;
+	
 	
 	
 	
@@ -84,6 +95,43 @@ public class BookController {
 				.orElseThrow(() -> new ResourceNotFoundException("BookData not found ID"));
 		
 		oldBookData = bookData;
+		
+		for(BookCartData cartData : cartRepository.findAll()) {
+			
+			if (cartData.getBookName().equals(oldBookData.getBookName()) && cartData.getUploaderUid().equals(oldBookData.getUploaderUid())) {
+				
+				cartData.setClassify(oldBookData.getClassify());
+				cartData.setDescription(oldBookData.getDescription());
+				cartData.setPhotoUrl(oldBookData.getPhotoUrl());
+				cartData.setQty(oldBookData.getQty());
+				cartData.setRemark(oldBookData.getRemark());
+				cartData.setShipment(oldBookData.getShipment());
+				cartData.setStatus(oldBookData.getStatus());
+				cartData.setUnitPrice(oldBookData.getUnitPrice());
+				cartData.setTotalPrice(oldBookData.getTotalPrice());
+				cartRepository.save(cartData);
+				break;
+			}
+		}
+		
+		for(FavoriteData favoriteData : favoriteRepository.findAll()) {
+			
+			if (favoriteData.getBookName().equals(oldBookData.getBookName()) && favoriteData.getUploaderUid().equals(oldBookData.getUploaderUid())) {
+				
+				favoriteData.setClassify(oldBookData.getClassify());
+				favoriteData.setDescription(oldBookData.getDescription());
+				favoriteData.setPhotoUrl(oldBookData.getPhotoUrl());
+				favoriteData.setQty(oldBookData.getQty());
+				favoriteData.setRemark(oldBookData.getRemark());
+				favoriteData.setShipment(oldBookData.getShipment());
+				favoriteData.setStatus(oldBookData.getStatus());
+				favoriteData.setUnitPrice(oldBookData.getUnitPrice());
+				favoriteData.setTotalPrice(oldBookData.getTotalPrice());
+				favoriteRepository.save(favoriteData);
+				break;
+			}
+		}
+		
 		
 		return this.bookRepository.save(oldBookData);
 		

@@ -49,6 +49,7 @@ public class FavoriteController {
 				isFoundSameData = true;
 			}
 		}
+		
 		if (isFoundSameData) {
 			
 			favoriteData.setBookName("Do not repeat!");
