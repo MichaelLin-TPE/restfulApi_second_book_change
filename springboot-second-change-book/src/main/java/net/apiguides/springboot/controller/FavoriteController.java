@@ -67,12 +67,16 @@ public class FavoriteController {
 	@PostMapping("/deleteFavorite")
 	public FavoriteData deleteFavoriteData(@RequestBody FavoriteData favoriteData) {
 		
-		FavoriteData oldFavoriteData = this.favoriteRepository.findById(favoriteData.getId())
-				.orElseThrow(() -> new ResourceNotFoundException("BookData not found ID"));
 		
-		this.favoriteRepository.delete(oldFavoriteData);
+		for(FavoriteData data : favoriteRepository.findAll()) {
+			if (data.getBookName().equals(favoriteData.getBookName()) && data.getMyUid().equals(favoriteData.getMyUid())) {
+				favoriteRepository.delete(data);
+				break;
+			}
+		}
 		
-		return oldFavoriteData;
+		
+		return favoriteData;
 		
 		
 	}
