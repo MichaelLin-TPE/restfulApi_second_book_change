@@ -18,6 +18,7 @@ import net.apiguides.springboot.entity.BookCartData;
 import net.apiguides.springboot.entity.BookData;
 import net.apiguides.springboot.entity.FavoriteData;
 import net.apiguides.springboot.entity.SearchData;
+import net.apiguides.springboot.entity.UserData;
 import net.apiguides.springboot.exception.ResourceNotFoundException;
 import net.apiguides.springboot.repository.BookCartRepository;
 import net.apiguides.springboot.repository.BookRepository;
@@ -43,17 +44,32 @@ public class BookController {
 	
 	
 	//get all BookDatas ;
-	@GetMapping("/allList")
-	public List<BookData> getAllBookDatas(){
+	@PostMapping("/allList")
+	public List<BookData> getAllBookDatas(@RequestBody UserData userData){
 		
 		//get all BookDatas
 		List<BookData> allList = bookRepository.findAll();
+		
+		for(BookData data : allList) {
+			
+			for(FavoriteData favoriteData : favoriteRepository.findAll()) {
+				if (data.getBookName().equals(favoriteData.getBookName()) && favoriteData.getMyUid().equals(userData.getUid())) {
+					data.setSelectHeart(true);
+					break;
+				}	
+			}
+		}
+		
 		
 		System.out.println(new Gson().toJson(allList));
 		
 		return allList;
 		
 	}
+	
+	
+	
+	
 	
 	//get BookData by id
 	@PostMapping("/searchBookByBookName")

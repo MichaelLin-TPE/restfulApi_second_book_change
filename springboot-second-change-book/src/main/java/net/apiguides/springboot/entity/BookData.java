@@ -46,6 +46,8 @@ public class BookData {
 	private String myUid;
 	@Column(name = "msg_count")
 	private int msgCount;
+	@Column(name = "is_select_heart")
+	private boolean isSelectHeart;
 	
 	public BookData() {
 		
@@ -55,7 +57,7 @@ public class BookData {
 
 	public BookData(String bookName, String classify, String description, String qty, String status, String shipment,
 			String remark, String unitPrice, String totalPrice, String uploaderUid, long time, String photoUrl,
-			String userEmail,String myUid,int msgCount) {
+			String userEmail,String myUid,int msgCount,boolean isSelectHeart) {
 		super();
 		this.bookName = bookName;
 		this.classify = classify;
@@ -72,12 +74,25 @@ public class BookData {
 		this.userEmail = userEmail;
 		this.myUid = myUid;
 		this.msgCount = msgCount;
+		this.isSelectHeart = isSelectHeart;
 	}
 
 	
 	
-
 	
+	
+
+	public boolean isSelectHeart() {
+		return isSelectHeart;
+	}
+
+
+
+	public void setSelectHeart(boolean isSelectHeart) {
+		this.isSelectHeart = isSelectHeart;
+	}
+
+
 
 	public int getMsgCount() {
 		return msgCount;
@@ -271,6 +286,9 @@ public class BookData {
 				+ ", unitPrice=" + unitPrice + ", totalPrice=" + totalPrice + ", uploaderUid=" + uploaderUid + ", time="
 				+ time + ", photoUrl=" + photoUrl + ", userEmail=" + userEmail + ", myUid=" + myUid + "]";
 	}
+
+
+
 	
 	
 	
