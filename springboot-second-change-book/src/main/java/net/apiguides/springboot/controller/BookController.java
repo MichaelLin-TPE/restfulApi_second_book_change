@@ -55,13 +55,16 @@ public class BookController {
 		System.out.println("favList size "+favList.size());
 		
 		for(BookData data : allList) {
+			data.setSelectHeart(false);
+		}
+		
+		for(BookData data : allList) {
 			
 			for(FavoriteData favoriteData : favoriteRepository.findAll()) {
 				System.out.println("book : "+data.getBookName()+" , fav book : "+favoriteData.getBookName() + " , fav uid : "+favoriteData.getMyUid()+" , user uid : "+userData.getUid());
 				if (data.getBookName().equals(favoriteData.getBookName()) && favoriteData.getMyUid().equals(userData.getUid())) {
 					System.out.println("find favorite");
 					data.setSelectHeart(true);
-					bookRepository.save(data);
 					break;
 				}	
 			}
