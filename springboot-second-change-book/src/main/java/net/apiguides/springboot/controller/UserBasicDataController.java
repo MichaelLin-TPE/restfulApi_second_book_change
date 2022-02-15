@@ -11,10 +11,12 @@ import org.springframework.http.*;
 import org.springframework.http.StreamingHttpOutputMessage.Body;
 
 import net.apiguides.springboot.entity.BookData;
+import net.apiguides.springboot.entity.FavoriteData;
 import net.apiguides.springboot.entity.UserAllInformation;
 import net.apiguides.springboot.entity.UserBasicData;
 import net.apiguides.springboot.exception.ResourceNotFoundException;
 import net.apiguides.springboot.repository.BookRepository;
+import net.apiguides.springboot.repository.FavoriteRepository;
 import net.apiguides.springboot.repository.UserBasicDataRepository;
 import net.apiguides.springboot.repository.UserRepository;
 
@@ -28,6 +30,9 @@ public class UserBasicDataController {
 	
 	@Autowired
 	private BookRepository bookRepository;
+	
+	@Autowired
+	private FavoriteRepository favoriteRepository;
 	
 	
 	
@@ -132,7 +137,21 @@ public class UserBasicDataController {
 			}
 		}
 		
-		information.setBookList(bookList);
+		
+		for(BookData data : information.getBookList()) {
+			
+			for(FavoriteData favoriteData : favoriteRepository.findAll()) {
+				
+				if (favoriteData.getMyUid().equals(userBasicData.getUserUid()) && data.getBookName().equals(favoriteData.getBookName())) {
+					
+					data.setSelectHeart(true);
+					
+				}
+				
+			}
+			
+		}
+		
 		
 		return information;
 		
