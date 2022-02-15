@@ -41,8 +41,6 @@ public class BookController {
 	private FavoriteRepository favoriteRepository;
 	
 	
-	
-	
 	//get all BookDatas ;
 	@PostMapping("/allList")
 	public List<BookData> getAllBookDatas(@RequestBody UserData userData){
@@ -100,6 +98,18 @@ public class BookController {
 			}
 			
 		}
+		
+		
+		for(BookData data : searchList) {
+			
+			for(FavoriteData favoriteData : favoriteRepository.findAll()) {
+				if (data.getBookName().equals(favoriteData.getBookName()) && favoriteData.getMyUid().equals(searchData.getUid())) {
+					data.setSelectHeart(true);
+				}
+			}
+			
+		}
+		
 		
 		return searchList;
 	}
