@@ -137,6 +137,7 @@ public class UserBasicDataController {
 			}
 		}
 		
+		information.setBookList(bookList);
 		
 		for(BookData data : information.getBookList()) {
 			
@@ -151,7 +152,6 @@ public class UserBasicDataController {
 			}
 			
 		}
-		
 		
 		return information;
 		
