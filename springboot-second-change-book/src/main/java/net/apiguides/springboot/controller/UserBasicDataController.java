@@ -157,6 +157,62 @@ public class UserBasicDataController {
 		
 	}
 	
+	@PostMapping("/searchOtherUserAllInformation")
+	public UserAllInformation searchOtherUserAllInformation(@RequestBody UserBasicData userBasicData) {
+		
+		
+		UserAllInformation information = new UserAllInformation();
+		
+		
+		for(UserBasicData data : userBasicDataRepository.findAll()) {
+			
+			if (data.getUserUid().equals(userBasicData.getUserUid())) {
+				
+				information.setAccount(data.getAccount() == null ? "" : data.getAccount());
+				information.setBookCount(data.getBookCount());
+				information.setEmail(data.getEmail() == null ? "" : data.getEmail());
+				information.setFollow(data.getFollow());
+				information.setFollower(data.getFollower());
+				information.setNickName(data.getNickName() == null ? "" : data.getNickName());
+				information.setTel(data.getTel() == null ? "" : data.getTel());
+				information.setUserPhotoUrl(data.getUserPhotoUrl() == null ? "" : data.getUserPhotoUrl());
+				information.setUserUid(data.getUserUid() == null ? "" : data.getUserUid());
+				information.setBankCode(data.getBankCode() == null ? "" : data.getBankCode());
+				information.setBankAccount(data.getBankAccount() == null ? "" : data.getBankAccount());
+				information.setBankName(data.getBankName() == null ? "" : data.getBankName());
+				
+				break;
+			}
+		}
+		
+		ArrayList<BookData> bookList = new ArrayList<>();
+		
+		for(BookData bookData : bookRepository.findAll()) {
+			if (bookData.getUploaderUid().equals(userBasicData.getUserUid())) {
+				bookList.add(bookData);
+			}
+		}
+		
+		information.setBookList(bookList);
+		
+		for(BookData data : information.getBookList()) {
+			
+			for(FavoriteData favoriteData : favoriteRepository.findAll()) {
+				
+				if (favoriteData.getMyUid().equals(userBasicData.getEmail()) && data.getBookName().equals(favoriteData.getBookName())) {
+					
+					data.setSelectHeart(true);
+					
+				}
+				
+			}
+			
+		}
+		
+		return information;
+		
+	}
+	
 	@PostMapping("/deleteUser")
 	public UserBasicData deleteUserBasicData(@RequestBody UserBasicData data) {
 		
