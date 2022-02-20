@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
+import javax.el.StaticFieldELResolver;
 import javax.print.attribute.PrintRequestAttribute;
 
 import org.apache.catalina.connector.Response;
@@ -40,6 +41,8 @@ public class BookCartController {
 
 	private static final int TRADING = 0;
 	
+	private static final int TRAD_COMPETELY = 1;
+	
 	private static final int BUYER = 555;
 	
 	private static final int SELLER = 666;
@@ -59,6 +62,37 @@ public class BookCartController {
 	
 	@Autowired
 	private CheckOutListRepository checkOutListRepository;
+	
+	@PostMapping("/changeOrderStatus")
+	public ResponseData changeOrderStatus(@RequestBody OrderData orderData) {
+		
+		
+		if (orderData == null || orderData.getOrderId() == null) {
+			
+			return getJson(RESULT_ERROR, "Error something is null");
+		}
+		
+		boolean isFoundData = false;
+		
+		for(OrderData data : orderDataRepository.findAll()) {
+			
+			if (data.getOrderId().equals(orderData.getOrderId())) {
+				
+				data.setStatus(TRAD_COMPETELY);
+				orderDataRepository.save(data);
+				isFoundData = true;
+				break;
+			}
+			
+		}
+		
+		if (!isFoundData) {
+			return getJson(RESULT_ERROR, "Not found this orderId");
+		}
+		
+		return getJson(RESULT_OK, "Trading successful!");
+		
+	}
 	
 	@PostMapping("/checkOut")
 	public ResponseData startToCheckOut(@RequestBody ArrayList<CheckOutSaveData> checkOutList){
