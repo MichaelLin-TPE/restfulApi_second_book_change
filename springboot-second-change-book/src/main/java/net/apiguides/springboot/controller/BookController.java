@@ -139,7 +139,6 @@ public class BookController {
 				cartData.setClassify(oldBookData.getClassify());
 				cartData.setDescription(oldBookData.getDescription());
 				cartData.setPhotoUrl(oldBookData.getPhotoUrl());
-				cartData.setQty(oldBookData.getQty());
 				cartData.setRemark(oldBookData.getRemark());
 				cartData.setShipment(oldBookData.getShipment());
 				cartData.setStatus(oldBookData.getStatus());
