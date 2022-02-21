@@ -81,7 +81,7 @@ public class BookCartController {
 				data.setStatus(TRAD_COMPETELY);
 				orderDataRepository.save(data);
 				isFoundData = true;
-				break;
+			
 			}
 			
 		}
