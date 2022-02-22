@@ -135,7 +135,7 @@ public class BookController {
 		for(BookCartData cartData : cartRepository.findAll()) {
 			
 			if (cartData.getBookName().equals(oldBookData.getBookName()) && cartData.getUploaderUid().equals(oldBookData.getUploaderUid())) {
-				
+				System.out.println("修改購物車資訊");
 				cartData.setClassify(oldBookData.getClassify());
 				cartData.setDescription(oldBookData.getDescription());
 				cartData.setPhotoUrl(oldBookData.getPhotoUrl());
@@ -145,7 +145,6 @@ public class BookController {
 				cartData.setUnitPrice(oldBookData.getUnitPrice());
 				cartData.setTotalPrice(oldBookData.getTotalPrice());
 				cartRepository.save(cartData);
-				break;
 			}
 		}
 		
@@ -163,7 +162,6 @@ public class BookController {
 				favoriteData.setUnitPrice(oldBookData.getUnitPrice());
 				favoriteData.setTotalPrice(oldBookData.getTotalPrice());
 				favoriteRepository.save(favoriteData);
-				break;
 			}
 		}
 		
